@@ -5,151 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JobHunter AI</title>
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0f172a;
-color:white;
-}
-
-header{
-background:#111827;
-padding:25px;
-border-bottom:1px solid #1f2937;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:20px;
-}
-
-h1{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.subtitle{
-color:#94a3b8;
-}
-
-.controls{
-margin-top:25px;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-input,
-select{
-padding:15px;
-border:none;
-border-radius:10px;
-font-size:16px;
-}
-
-button{
-padding:15px;
-border:none;
-border-radius:10px;
-background:#2563eb;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-.stats{
-margin-top:20px;
-background:#1e293b;
-padding:15px;
-border-radius:10px;
-}
-
-.jobs{
-margin-top:25px;
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-gap:20px;
-}
-
-.job{
-background:#1e293b;
-padding:20px;
-border-radius:16px;
-}
-
-.job h3{
-margin-bottom:12px;
-line-height:1.4;
-}
-
-.job p{
-margin-bottom:10px;
-color:#cbd5e1;
-}
-
-.job a{
-display:inline-block;
-margin-top:10px;
-padding:10px 15px;
-border-radius:8px;
-background:#16a34a;
-color:white;
-text-decoration:none;
-}
-
-.favorite-btn{
-margin-top:10px;
-background:#f59e0b;
-width:100%;
-}
-
-.favorite-btn:hover{
-background:#d97706;
-}
-
-.loading{
-padding:50px;
-text-align:center;
-font-size:18px;
-}
-
-.section-title{
-margin-top:40px;
-margin-bottom:20px;
-}
-
-.favorite-job{
-background:#172554;
-padding:15px;
-border-radius:10px;
-margin-bottom:10px;
-}
-
-@media(max-width:768px){
-
-h1{
-font-size:30px;
-}
-
-.jobs{
-grid-template-columns:1fr;
-}
-
-}
-
-</style>
+css/style.css
 </head>
 
 <body>
@@ -158,10 +14,12 @@ grid-template-columns:1fr;
 
 <div class="container">
 
-<h1>JobHunter AI</h1>
+<div class="logo">
+🚀 JobHunter AI
+</div>
 
 <div class="subtitle">
-‎חיפוש משרות, שמירת מועדפים וניהול חיפוש עבודה
+מנוע חיפוש משרות אישי
 </div>
 
 </div>
@@ -170,29 +28,23 @@ grid-template-columns:1fr;
 
 <div class="container">
 
-<div class="controls">
+<div class="dashboard">
 
-<input
-type="text"
-id="searchInput"
-placeholder="QA Automation, Java, SDET, Backend..."
->
+<div class="stat">
+<h2 id="jobCount">0</h2>
+<p>משרות</p>
+</div>
 
-<select id="remoteFilter">
+<div class="stat">
+<h2 id="favoriteCount">0</h2>
+<p>מועדפים</p>
+</div>
 
-<option value="all">
-‎כל המשרות
-</option>
+</div>
 
-<option value="remote">
-Remote בלבד
-</option>
+<div class="upload-box">
 
-</select>
-
-<button onclick="searchJobs()">
-‎חפש משרות
-</button>
+<h3>קורות חיים</h3>
 
 <input
 type="file"
@@ -201,45 +53,411 @@ accept=".pdf,.doc,.docx"
 
 </div>
 
-<div class="stats">
+<div class="controls">
 
-‎נמצאו
-<span id="jobCount">0</span>
-‎משרות
+<input
+id="searchInput"
+type="text"
+placeholder="QA, Automation, Java..."
+>
+
+<select id="categoryFilter">
+
+<option value="all">
+כל המשרות
+</option>
+
+<option value="qa">
+QA / Automation
+</option>
+
+<option value="remote">
+Remote
+</option>
+
+</select>
 
 </div>
 
-<h2 class="section-title">
-‎משרות
-</h2>
+<br>
+
+<button
+class="button"
+onclick="searchJobs()"
+>
+חפש
+</button>
+
+<div class="tabs">
+
+<button
+id="jobsTab"
+class="tab-btn active"
+onclick="showJobsTab()"
+>
+💼 כל המשרות
+</button>
+
+<button
+id="favoritesTab"
+class="tab-btn"
+onclick="showFavoritesTab()"
+>
+⭐ מועדפים
+</button>
+
+</div>
 
 <div id="jobs" class="jobs"></div>
 
-<h2 class="section-title">
-‎מועדפים
-</h2>
+<div
+id="favoritesSection"
+style="display:none;"
+>
 
 <div id="favorites"></div>
 
 </div>
 
-<script>
+</div>
 
+js/app.jsscript>
+
+</body>
+</html>
+
+---
+
+css/style.css
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+}
+
+header{
+background:#0f172a;
+padding:25px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+}
+
+.subtitle{
+color:#94a3b8;
+margin-top:8px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.stat{
+background:#111827;
+padding:20px;
+border-radius:12px;
+text-align:center;
+}
+
+.controls{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:20px;
+}
+
+.controls input,
+.controls select{
+padding:14px;
+border:none;
+border-radius:10px;
+background:#111827;
+color:white;
+}
+
+.button{
+background:#2563eb;
+padding:14px 20px;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.upload-box{
+background:#111827;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+}
+
+.tabs{
+display:flex;
+gap:12px;
+margin-top:20px;
+margin-bottom:25px;
+flex-wrap:wrap;
+width:100%;
+}
+
+.tab-btn{
+flex:1;
+min-width:140px;
+background:#111827;
+color:#cbd5e1;
+border:1px solid #334155;
+padding:14px 20px;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:.25s;
+}
+
+.tab-btn:hover{
+background:#1e293b;
+color:white;
+}
+
+.tab-btn.active{
+background:#2563eb;
+color:white;
+}
+
+.jobs{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+gap:20px;
+}
+
+.job{
+background:#111827;
+padding:20px;
+border-radius:12px;
+}
+
+.job h3{
+margin-bottom:10px;
+}
+
+.job p{
+margin-bottom:8px;
+color:#cbd5e1;
+}
+
+.apply{
+display:inline-block;
+padding:10px 15px;
+background:#16a34a;
+text-decoration:none;
+color:white;
+border-radius:8px;
+margin-top:10px;
+}
+
+.favorite{
+background:#f59e0b;
+padding:10px 15px;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.favorite-card{
+background:#172554;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+@media(max-width:768px){
+
+.controls{
+grid-template-columns:1fr;
+}
+
+.tabs{
+flex-direction:column;
+}
+
+.tab-btn{
+width:100%;
+}
+
+.jobs{
+grid-template-columns:1fr;
+}
+
+}
+
+---
+
+js/app.js
 let allJobs = [];
 
-function saveFavorite(title,company,url){
+async function loadJobs(){
+
+try{
+
+const response =
+await fetch(
+"https://www.arbeitnow.com/api/job-board-api"
+);
+
+const data =
+await response.json();
+
+allJobs =
+data.data || [];
+
+renderJobs(allJobs);
+
+updateStats();
+
+}
+catch(error){
+
+document.getElementById("jobs").innerHTML =
+"<h3>שגיאה בטעינת משרות</h3>";
+
+}
+
+}
+
+function renderJobs(jobs){
+
+const container =
+document.getElementById("jobs");
+
+container.innerHTML = "";
+
+jobs.slice(0,100).forEach(job=>{
+
+container.innerHTML += `
+<div class="job">
+
+<h3>${job.title}</h3>
+
+<p>חברה: ${job.company_name}</p>
+
+<p>מיקום: ${job.location}</p>
+
+<p>
+Remote:
+${job.remote ? "כן" : "לא"}
+</p>
+
+${job.url}
+הגש מועמדות
+</a>
+
+<br>
+
+<button
+class="favorite"
+onclick="saveFavorite(
+'${(job.title || '').replace(/'/g,'')}',
+'${(job.company_name || '').replace(/'/g,'')}',
+'${job.url}'
+)"
+>
+⭐ שמור
+</button>
+
+</div>
+`;
+});
+
+}
+
+function searchJobs(){
+
+const text =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const filter =
+document
+.getElementById("categoryFilter")
+.value;
+
+let filtered =
+allJobs.filter(job =>
+(job.title || "")
+.toLowerCase()
+.includes(text)
+);
+
+if(filter === "remote"){
+
+filtered =
+filtered.filter(
+job => job.remote
+);
+
+}
+
+if(filter === "qa"){
+
+filtered =
+filtered.filter(job => {
+
+const t =
+(job.title || "")
+.toLowerCase();
+
+return t.includes("qa")
+||
+t.includes("automation")
+||
+t.includes("sdet")
+||
+t.includes("test");
+
+});
+
+}
+
+renderJobs(filtered);
+
+}
+
+function saveFavorite(
+title,
+company,
+url
+){
 
 let favorites =
 JSON.parse(
 localStorage.getItem("favorites") || "[]"
 );
 
-const exists =
+if(
 favorites.find(
-job => job.url === url
-);
-
-if(exists){
+x => x.url === url
+)
+){
 return;
 }
 
@@ -255,6 +473,26 @@ JSON.stringify(favorites)
 );
 
 renderFavorites();
+updateStats();
+
+}
+
+function removeFavorite(index){
+
+let favorites =
+JSON.parse(
+localStorage.getItem("favorites") || "[]"
+);
+
+favorites.splice(index,1);
+
+localStorage.setItem(
+"favorites",
+JSON.stringify(favorites)
+);
+
+renderFavorites();
+updateStats();
 
 }
 
@@ -270,181 +508,98 @@ localStorage.getItem("favorites") || "[]"
 
 container.innerHTML = "";
 
-if(favorites.length === 0){
-
-container.innerHTML =
-"<p>אין משרות שמורות</p>";
-
-return;
-
-}
-
-favorites.forEach(job=>{
+favorites.forEach((job,index)=>{
 
 container.innerHTML += `
-<div class="favorite-job">
+<div class="favorite-card">
 
 <h3>${job.title}</h3>
 
 <p>${job.company}</p>
 
 ${job.url}
-‎פתח משרה
+פתח משרה
 </a>
 
-</div>
-`;
-
-});
-
-}
-
-async function loadJobs(){
-
-const jobsContainer =
-document.getElementById("jobs");
-
-jobsContainer.innerHTML =
-'<div class="loading">טוען משרות...</div>';
-
-try{
-
-const response =
-await fetch(
-'https://www.arbeitnow.com/api/job-board-api'
-);
-
-const data =
-await response.json();
-
-allJobs =
-data.data || [];
-
-renderJobs(allJobs);
-
-}
-catch(error){
-
-jobsContainer.innerHTML = `
-<div class="job">
-<h3>שגיאה בטעינת משרות</h3>
-</div>
-`;
-
-}
-
-}
-
-function renderJobs(jobs){
-
-document.getElementById("jobCount")
-.innerText = jobs.length;
-
-const jobsContainer =
-document.getElementById("jobs");
-
-jobsContainer.innerHTML = "";
-
-if(jobs.length === 0){
-
-jobsContainer.innerHTML = `
-<div class="job">
-<h3>לא נמצאו משרות</h3>
-</div>
-`;
-
-return;
-
-}
-
-jobs.slice(0,100).forEach(job=>{
-
-jobsContainer.innerHTML += `
-
-<div class="job">
-
-<h3>
-${job.title || ""}
-</h3>
-
-<p>
-<strong>חברה:</strong>
-${job.company_name || ""}
-</p>
-
-<p>
-<strong>מיקום:</strong>
-${job.location || "Remote"}
-</p>
-
-<p>
-<strong>Remote:</strong>
-${job.remote ? "כן" : "לא"}
-</p>
-
-${job.url}
-‎הגש מועמדות
-</a>
+<br><br>
 
 <button
-class="favorite-btn"
-onclick="saveFavorite(
-'${(job.title || '').replace(/'/g,'')}',
-'${(job.company_name || '').replace(/'/g,'')}',
-'${job.url}'
-)"
+class="favorite"
+onclick="removeFavorite(${index})"
 >
-‎⭐ שמור למועדפים
+🗑 הסר
 </button>
 
 </div>
-
 `;
 
 });
 
 }
 
-function searchJobs(){
+function updateStats(){
 
-const text =
+document.getElementById(
+"jobCount"
+).innerText =
+allJobs.length;
+
+const favorites =
+JSON.parse(
+localStorage.getItem("favorites") || "[]"
+);
+
+document.getElementById(
+"favoriteCount"
+).innerText =
+favorites.length;
+
+}
+
+function showFavoritesTab(){
+
+document.getElementById(
+"jobs"
+).style.display =
+"none";
+
+document.getElementById(
+"favoritesSection"
+).style.display =
+"block";
+
 document
-.getElementById("searchInput")
-.value
-.toLowerCase();
+.getElementById("favoritesTab")
+.classList.add("active");
 
-const remote =
 document
-.getElementById("remoteFilter")
-.value;
+.getElementById("jobsTab")
+.classList.remove("active");
 
-const filtered =
-allJobs.filter(job => {
+}
 
-const title =
-(job.title || "")
-.toLowerCase();
+function showJobsTab(){
 
-const titleMatch =
-title.includes(text);
+document.getElementById(
+"jobs"
+).style.display =
+"grid";
 
-const remoteMatch =
-remote === "all"
-? true
-: job.remote === true;
+document.getElementById(
+"favoritesSection"
+).style.display =
+"none";
 
-return titleMatch && remoteMatch;
+document
+.getElementById("jobsTab")
+.classList.add("active");
 
-});
-
-renderJobs(filtered);
+document
+.getElementById("favoritesTab")
+.classList.remove("active");
 
 }
 
 loadJobs();
 renderFavorites();
-
-</script>
-
-</body>
-</html>
+showJobsTab();
