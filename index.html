@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobHunter AI</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 0;
+}
+
+.hero h1{
+    font-size:64px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    font-size:22px;
+    margin-bottom:30px;
+}
+
+.search-box{
+    max-width:600px;
+    margin:auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.search-box button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:#1d4ed8;
+}
+
+.jobs{
+    margin-top:60px;
+}
+
+.job-card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.job-card h3{
+    margin-bottom:10px;
+}
+
+.job-card p{
+    color:#cbd5e1;
+    margin-bottom:5px;
+}
+
+.job-card a{
+    display:inline-block;
+    margin-top:10px;
+    color:#60a5fa;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="hero">
+        <h1>JobHunter AI</h1>
+
+        <p>
+‎            מצא משרות מכל מקורות החיפוש במקום אחד
+        </p>
+
+        <div class="search-box">
+            <input id="roleInput"
+                   type="text"
+                   placeholder="QA Automation Engineer">
+
+            <button onclick="searchJobs()">
+‎                חפש משרות
+            </button>
+        </div>
+    </section>
+
+    <section class="jobs">
+        <div id="jobsContainer"></div>
+    </section>
+
+</div>
+
+<script>
+
+const jobs = [
+{
+    title:'QA Automation Engineer',
+    company:'Microsoft',
+    location:'Herzliya',
+    source:'LinkedIn'
+},
+{
+    title:'SDET',
+    company:'Monday',
+    location:'Tel Aviv',
+    source:'Career Page'
+},
+{
+    title:'Automation Engineer',
+    company:'Nvidia',
+    location:'Tel Aviv',
+    source:'Job Board'
+},
+{
+    title:'QA Engineer',
+    company:'Check Point',
+    location:'Petah Tikva',
+    source:'LinkedIn'
+}
+];
+
+function searchJobs(){
+
+    const keyword =
+        document
+        .getElementById('roleInput')
+        .value
+        .toLowerCase();
+
+    const results = jobs.filter(job =>
+        job.title.toLowerCase().includes(keyword)
+    );
+
+    renderJobs(results);
+}
+
+function renderJobs(list){
+
+    const container =
+        document.getElementById('jobsContainer');
+
+    container.innerHTML = '';
+
+    if(list.length === 0){
+        container.innerHTML =
+        '<h2>לא נמצאו משרות</h2>';
+        return;
+    }
+
+    list.forEach(job => {
+
+        container.innerHTML += `
+        <div class="job-card">
+            <h3>${job.title}</h3>
+            <p>חברה: ${job.company}</p>
+            <p>מיקום: ${job.location}</p>
+            <p>מקור: ${job.source}</p>
+‎            #הגש מועמדות</a>
+        </div>
+        `;
+    });
+}
+
+renderJobs(jobs);
+
+</script>
+
+</body>
+</html>
