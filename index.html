@@ -1,127 +1,119 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHunter AI</title>
 
-<title>JobHunter AI</title>
-
-css/style.css
-
+    css/style.css
 </head>
 
 <body>
 
 <header>
+    <div class="container">
 
-<div class="container">
+        <div class="logo">
+            🚀 JobHunter AI
+        </div>
 
-<div class="logo">
-🚀 JobHunter AI
-</div>
+        <div class="subtitle">
+            מנוע חיפוש משרות אישי
+        </div>
 
-<div class="subtitle">
-‎מנוע חיפוש משרות אישי
-</div>
-
-</div>
-
+    </div>
 </header>
 
 <div class="container">
 
-<div class="dashboard">
+    <div class="dashboard">
 
-<div class="stat">
-<h2 id="jobCount">0</h2>
-<p>משרות</p>
-</div>
+        <div class="stat">
+            <h2 id="jobCount">0</h2>
+            <p>משרות</p>
+        </div>
 
-<div class="stat">
-<h2 id="favoriteCount">0</h2>
-<p>מועדפים</p>
-</div>
+        <div class="stat">
+            <h2 id="favoriteCount">0</h2>
+            <p>מועדפים</p>
+        </div>
 
-</div>
+    </div>
 
-<div class="upload-box">
+    <div class="upload-box">
 
-<h3>קורות חיים</h3>
+        <h3>קורות חיים</h3>
 
-<br>
+        <br>
 
-<input
-type="file"
-accept=".pdf,.doc,.docx"
->
+        <input
+            type="file"
+            accept=".pdf,.doc,.docx"
+        >
 
-</div>
+    </div>
 
-<div class="controls">
+    <div class="controls">
 
-<input
-id="searchInput"
-type="text"
-placeholder="QA, Automation, Java..."
->
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="QA, Automation, Java..."
+        >
 
-<select id="categoryFilter">
+        <select id="categoryFilter">
 
-<option value="all">
-‎כל המשרות
-</option>
+            <option value="all">
+                כל המשרות
+            </option>
 
-<option value="qa">
-QA / Automation
-</option>
+            <option value="qa">
+                QA / Automation
+            </option>
 
-<option value="remote">
-Remote בלבד
-</option>
+            <option value="remote">
+                Remote בלבד
+            </option>
 
-</select>
+        </select>
 
-</div>
+    </div>
 
-<br>
+    <br>
 
-<button
-class="button"
-onclick="searchJobs()"
->
-‎חפש
-</button>
+    <button
+        class="button"
+        onclick="searchJobs()"
+    >
+        חפש
+    </button>
 
-<div class="tabs">
+    <div class="tabs">
 
-<button
-id="jobsTab"
-class="tab-btn active"
-onclick="showJobsTab()"
->
-‎💼 כל המשרות
-</button>
+        <button
+            id="jobsTab"
+            class="tab-btn active"
+            onclick="showJobsTab()"
+        >
+            💼 כל המשרות
+        </button>
 
-<button
-id="favoritesTab"
-class="tab-btn"
-onclick="showFavoritesTab()"
->
-‎⭐ מועדפים
-</button>
+        <button
+            id="favoritesTab"
+            class="tab-btn"
+            onclick="showFavoritesTab()"
+        >
+            ⭐ מועדפים
+        </button>
 
-</div>
+    </div>
 
-<div id="jobs" class="jobs"></div>
+    <div id="jobs" class="jobs"></div>
 
-<div
-id="favoritesSection"
-style="display:none;"
->
-
-<div id="favorites"></div>
-
-</div>
+    <div id="favoritesSection" style="display:none;">
+        <div id="favorites"></div>
+    </div>
 
 </div>
 
